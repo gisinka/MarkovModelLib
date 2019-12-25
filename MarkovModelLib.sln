@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkovModelLib", "MarkovModelLib.csproj", "{C725C85D-B0F3-4A0A-B2B8-BFE917AFCCC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C725C85D-B0F3-4A0A-B2B8-BFE917AFCCC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C725C85D-B0F3-4A0A-B2B8-BFE917AFCCC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C725C85D-B0F3-4A0A-B2B8-BFE917AFCCC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C725C85D-B0F3-4A0A-B2B8-BFE917AFCCC3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3F41BC6-7723-4B18-ADDA-E4F30C862C3C}
+	EndGlobalSection
+EndGlobal
