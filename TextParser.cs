@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MarkovModelLib
 {
-    static class TextParser
+    internal static class TextParser
     {
         private static readonly char[] Separators = { '.', '!', '?', ':', ';', '(', ')' };
 

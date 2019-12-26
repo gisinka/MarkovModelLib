@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace MarkovModelLib
 {
-    static class MarkovModelMaker
+    internal static class MarkovModelMaker
     {
         public static void UpdateMarkovModel(List<List<string>> text, List<string> startsList, Dictionary<string, Dictogram> markovModel)
         {

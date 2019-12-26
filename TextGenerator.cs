@@ -5,13 +5,26 @@ using System.Text;
 
 namespace MarkovModelLib
 {
-    static class TextGenerator
+    internal static class TextGenerator
     {
-        public static string GenerateText(Dictionary<string, Dictogram> markovModel, List<string> startsList,
+        public static string GenerateMessage(Dictionary<string, Dictogram> markovModel, List<string> startsList,
             int wordsCount)
         {
-            var text = new List<string>();
             var currentWord = ChooseRandomStart(startsList);
+            return GenerateText(markovModel, wordsCount, currentWord);
+        }
+
+        public static string GenerateMessage(Dictionary<string, Dictogram> markovModel, List<string> startsList,
+            int wordsCount, string currentWord)
+        {
+            if (!startsList.Contains(currentWord))
+                currentWord = ChooseRandomStart(startsList);
+            return GenerateText(markovModel, wordsCount, currentWord);
+        }
+
+        private static string GenerateText(Dictionary<string, Dictogram> markovModel, int wordsCount, string currentWord)
+        {
+            var text = new List<string>();
             text.Add(currentWord);
             var random = new Random();
             for (var i = 1; i < wordsCount; i++)

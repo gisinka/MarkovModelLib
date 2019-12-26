@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MarkovModelLib
 {
-    internal class Dictogram : Dictionary<string, int>
+    public class Dictogram : Dictionary<string, int>
     {
         private readonly Random _random;
         private int _keysCount;
