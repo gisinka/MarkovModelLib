@@ -7,13 +7,20 @@ namespace MarkovModelLib
     public class Dictogram : Dictionary<string, int>
     {
         private readonly Random _random;
-        private int _keysCount;
-        private int _tokensCount;
+        public int KeysCount;
+        public int TokensCount;
 
+        public Dictogram()
+        {
+            KeysCount = 0;
+            TokensCount = 0;
+            _random = new Random();
+        }
+        
         public Dictogram(string[] iterable = null)
         {
-            _keysCount = 0;
-            _tokensCount = 0;
+            KeysCount = 0;
+            TokensCount = 0;
             _random = new Random();
             if (iterable != null)
             {
@@ -28,13 +35,13 @@ namespace MarkovModelLib
                 if (ContainsKey(word))
                 {
                     this[word] += 1;
-                    _tokensCount += 1;
+                    TokensCount += 1;
                 }
                 else
                 {
                     this[word] = 1;
-                    _tokensCount += 1;
-                    _keysCount += 1;
+                    TokensCount += 1;
+                    KeysCount += 1;
                 }
             }
         }
@@ -56,10 +63,10 @@ namespace MarkovModelLib
 
         public string ReturnWeightedRandomWord()
         {
-            var randomIndex = _random.Next(0, _tokensCount - 1);
+            var randomIndex = _random.Next(0, TokensCount - 1);
             var index = 0;
             var keysList = Keys.ToList();
-            for (var i = 0; i < _keysCount; i++)
+            for (var i = 0; i < KeysCount; i++)
             {
                 index += this[keysList[i]];
                 if (index >= randomIndex)
