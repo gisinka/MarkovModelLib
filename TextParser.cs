@@ -11,9 +11,15 @@ namespace MarkovModelLib
             var sentencesList = new List<List<string>>();
             var textBuilder = new StringBuilder(text);
             if (!(string.IsNullOrEmpty(text) || char.IsPunctuation(text[text.Length - 1])))
+            {
                 textBuilder.Append(".");
+            }
+
             if (!(string.IsNullOrEmpty(text) || char.IsUpper(text[0])))
+            {
                 textBuilder[0] = char.ToUpper(textBuilder[0]);
+            }
+
             foreach (Match sentence in Regex.Matches(textBuilder.ToString(), @"[А-ЯЁ][\S\s]+?(?:[\S][^А-ЯЁ\.]){1,}(?:\.+|[?!])(?!(\s*[а-яё)\-""«0-9\.]))", RegexOptions.Multiline))
             {
                 var sentenceDivided = DivideWords(sentence.Value);

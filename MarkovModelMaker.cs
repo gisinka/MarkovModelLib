@@ -29,7 +29,7 @@ namespace MarkovModelLib
                         var start = firstKey.ToString().Substring(0, firstKey.Length - 1);
                         if (char.IsUpper(start[0]) && char.IsLower(start[start.Length - 1]))
                         {
-                            start = start.ToLower();
+                            start = start.ToLowerInvariant();
                             firstKey = new StringBuilder(start);
                         }
 
