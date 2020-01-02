@@ -26,14 +26,21 @@ namespace MarkovModelLib
                     firstKey.Append(sentence[m + i] + " ");
                     if (i == 0 && m == gramDimension - 2)
                     {
-                        startsList.Add(firstKey.ToString().Substring(0, firstKey.Length - 1));
+                        var start = firstKey.ToString().Substring(0, firstKey.Length - 1);
+                        if (char.IsUpper(start[0]) && char.IsLower(start[start.Length - 1]))
+                        {
+                            start = start.ToLower();
+                            firstKey = new StringBuilder(start);
+                        }
+
+                        startsList.Add(start);
                     }
                     if (m == gramDimension - 2)
                     {
                         secondKey.Append(sentence[m + i + 1]);
                     }
                 }
-
+                
                 firstKey.Remove(firstKey.Length - 1, 1);
                 AddNGram(markovModel, firstKey.ToString(), secondKey.ToString());
                 firstKey.Clear();

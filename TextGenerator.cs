@@ -18,7 +18,10 @@ namespace MarkovModelLib
             int wordsCount, string currentWord)
         {
             if (!startsList.Contains(currentWord))
+            {
                 currentWord = ChooseRandomStart(startsList);
+            }
+
             return GenerateText(markovModel, wordsCount, currentWord);
         }
 
@@ -32,8 +35,7 @@ namespace MarkovModelLib
                 var currentDictogram = markovModel.ContainsKey(currentWord)
                     ? markovModel[currentWord]
                     : markovModel.Values.ToList()[random.Next(0, markovModel.Values.Count - 1)];
-                var randomWeightedWord = currentDictogram.ReturnWeightedRandomWord();
-                currentWord = randomWeightedWord;
+                currentWord = currentDictogram.ReturnWeightedRandomWord();
                 text.Add(currentWord);
             }
 
@@ -43,7 +45,8 @@ namespace MarkovModelLib
         private static string ChooseRandomStart(List<string> startsList)
         {
             var random = new Random();
-            return startsList[random.Next(0, startsList.Count - 1)];
+            var start = startsList[random.Next(0, startsList.Count - 1)];
+            return char.ToUpper(start[0])+start.Substring(1, start.Length - 1);
         }
     }
 }
