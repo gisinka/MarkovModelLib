@@ -4,13 +4,13 @@ using System.Text.RegularExpressions;
 
 namespace MarkovModelLib
 {
-    internal static class TextParser
+    public static class TextParser
     {
-        public static List<List<string>> ParseSentences(string text)
+        public static IEnumerable<List<string>> ParseSentences(string text)
         {
             var sentencesList = new List<List<string>>();
             var textBuilder = new StringBuilder(text);
-            if (!(string.IsNullOrEmpty(text) || char.IsPunctuation(text[text.Length - 1])))
+            if (!(string.IsNullOrEmpty(text) || char.IsPunctuation(text[^1])))
             {
                 textBuilder.Append(".");
             }

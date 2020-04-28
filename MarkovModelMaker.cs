@@ -3,9 +3,9 @@ using System.Text;
 
 namespace MarkovModelLib
 {
-    internal static class MarkovModelMaker
+    public static class MarkovModelMaker
     {
-        public static void UpdateMarkovModel(List<List<string>> text, List<string> startsList, Dictionary<string, Dictogram> markovModel)
+        public static void UpdateMarkovModel(IEnumerable<List<string>> text, List<string> startsList, Dictionary<string, Dictogram> markovModel)
         {
             foreach (var sentence in text)
             {
@@ -14,8 +14,8 @@ namespace MarkovModelLib
             }
         }
 
-        private static void CreateNGramKeys(List<string> sentence, Dictionary<string, Dictogram> markovModel,
-            int gramDimension, List<string> startsList)
+        private static void CreateNGramKeys(IReadOnlyList<string> sentence, IDictionary<string, Dictogram> markovModel,
+            int gramDimension, ICollection<string> startsList)
         {
             var firstKey = new StringBuilder();
             var secondKey = new StringBuilder();
@@ -27,7 +27,7 @@ namespace MarkovModelLib
                     if (i == 0 && m == gramDimension - 2)
                     {
                         var start = firstKey.ToString().Substring(0, firstKey.Length - 1);
-                        if (char.IsUpper(start[0]) && char.IsLower(start[start.Length - 1]))
+                        if (char.IsUpper(start[0]) && char.IsLower(start[^1]))
                         {
                             start = start.ToLowerInvariant();
                             firstKey = new StringBuilder(start);
@@ -42,13 +42,13 @@ namespace MarkovModelLib
                 }
                 
                 firstKey.Remove(firstKey.Length - 1, 1);
-                AddNGram(markovModel, firstKey.ToString(), secondKey.ToString());
+                markovModel.AddNGram(firstKey.ToString(), secondKey.ToString());
                 firstKey.Clear();
                 secondKey.Clear();
             }
         }
 
-        private static void AddNGram(Dictionary<string, Dictogram> markovModel, string firstKey, string secondKey)
+        private static void AddNGram(this IDictionary<string, Dictogram> markovModel, string firstKey, string secondKey)
         {
             if (markovModel.ContainsKey(firstKey))
             {
